@@ -1,0 +1,55 @@
+{
+  "name": "advent-of-code-2020",
+  "version": "0.0.0",
+  "description": "Advent of Code 2020 using TypeScript and Node.js.",
+  "license": "MIT",
+  "private": true,
+  "main": "./dist/index.js",
+  "bin": {
+    "escape-plan": "./bin/escape-plan"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.2.1",
+    "@types/inquirer": "^7.3.1",
+    "@types/node": "^14.14.11",
+    "@types/rimraf": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.9.1",
+    "@typescript-eslint/parser": "^4.9.1",
+    "@yarnpkg/pnpify": "^2.4.0",
+    "cspell": "^4.2.5",
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-module-utils": "^2.6.0",
+    "eslint-plugin-import": "^2.22.1",
+    "husky": "^4.3.6",
+    "lint-staged": "^10.5.3",
+    "markdownlint": "^0.22.0",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "tsc-watch": "^4.2.9",
+    "typescript": "^4.1.2"
+  },
+  "scripts": {
+    "start": "yarn run build && yarn run cli",
+    "build": "yarn run clean && tsc --project .",
+    "check:format": "prettier --list-different \"./**/*.{ts,js,json,md}\"",
+    "check:spelling": "cspell --config=.cspell.json \"**/*.{md,ts,js}\"",
+    "dev": "tsc-watch --onSuccess 'node ./dist/index.js'",
+    "cli": "escape-plan",
+    "clean": "rimraf ./dist",
+    "format": "prettier --write \"./**/*.{ts,js,json,md}\"",
+    "lint:fix": "eslint . --ext .js,.ts --fix",
+    "lint:markdown:fix": "lint:markdown --fix",
+    "lint:markdown": "markdownlint '**/*.md' --config=.markdownlint.json --ignore-path=.markdownlintignore",
+    "lint": "eslint . --ext .js,.ts",
+    "pre-commit": "yarn lint-staged",
+    "pre-push": "yarn check:format"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "figlet": "^1.5.0",
+    "inquirer": "^7.3.3",
+    "tslib": "^2.0.3"
+  }
+}
