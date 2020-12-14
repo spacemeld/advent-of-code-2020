@@ -8,3 +8,12 @@ dist/*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# Optional eslint cache
+.eslintcache
+
+# Editor-specific metadata folders
+.vs
+
+# Misc.
+.DS_Store
