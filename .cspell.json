@@ -1,36 +1,15 @@
 {
-    "version": "0.0",
-    "language": "en",
-    "ignorePaths": [
-      "**/.yarn/**",
-      "**/dist/**",
-      "**/*.{json}",
-      ".cspell.json",
-      "yarn.lock",
-      ".vscode/*.json"
-    ],
-    "dictionaries": [
-      "typescript",
-      "softwareTerms",
-      "node",
-      "en_US",
-      "yarn",
-      "npm",
-      "misc",
-      "filetypes"
-    ],
-    "ignoreRegExpList": [
-    ],
-    "words": [
-    ],
-    "overrides": [
-      {
-        "filename": "**/*.{ts,js}",
-        "ignoreRegExpList": ["/@[a-z]+/", "/#(end)?region/"],
-        "includeRegExpList": [
-          "/\\/\\*[\\s\\S]*?\\*\\/|([^\\\\:]|^)\\/\\/.*$/",
-          "/(\\/\\/[^\\n\\r]*[\\n\\r]+)/"
-        ]
-      }
-    ]
-  }
+  "version": "0.0",
+  "language": "en",
+  "ignorePaths": ["**/.yarn/**", "**/dist/**", "**/*.{json}", ".cspell.json", "yarn.lock", ".vscode/*.json"],
+  "dictionaries": ["typescript", "softwareTerms", "node", "en_US", "yarn", "npm", "misc", "filetypes"],
+  "ignoreRegExpList": [],
+  "words": [],
+  "overrides": [
+    {
+      "filename": "**/*.{ts,js}",
+      "ignoreRegExpList": ["/@[a-z]+/", "/#(end)?region/"],
+      "includeRegExpList": ["/\\/\\*[\\s\\S]*?\\*\\/|([^\\\\:]|^)\\/\\/.*$/", "/(\\/\\/[^\\n\\r]*[\\n\\r]+)/"]
+    }
+  ]
+}
