@@ -1,6 +1,11 @@
-export const Days = {
-  "Day 1": 1,
-} as const;
+export interface Answer {
+  chosenDay: string;
+}
+
+export interface DayOption {
+  name: string;
+  value: string;
+}
 
 export interface Day {
   execute(): void;

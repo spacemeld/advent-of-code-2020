@@ -1,4 +1,4 @@
-import { Day } from "./definitions";
+import { Day } from "../definitions";
 
 class Day1 implements Day {
   private puzzleInput = [
