@@ -1,6 +1,7 @@
+import { DSAKeyPairKeyObjectOptions } from "crypto";
 import { readdirSync, statSync } from "fs";
 import path from "path";
-import { DayOption } from "./definitions";
+import { DaysReturnTypes, DayOption, DayIndex } from "./definitions";
 
 export class CollectDays {
   rootPath: string;
@@ -41,7 +42,7 @@ export class CollectDays {
     );
   }
 
-  generateTitleFromDayNumber(dayNumber: string | undefined): string {
+  generateTitleFromDayNumber(dayNumber: number | undefined): string {
     return ["Day", dayNumber].join(" ");
   }
 
@@ -51,16 +52,28 @@ export class CollectDays {
     return trimmedFilePath.includes(".") ? this.getFilePathWithoutExtension(trimmedFilePath) : trimmedFilePath;
   }
 
-  listClassesAsDays(): DayOption[] {
+  listClassesAsDays(returnType: DaysReturnTypes): DayOption[] | DayIndex[] {
     const fileList = this.generateFileList().map((filePath) => filePath.replace(this.rootPath, ""));
     const dayFileList = fileList.filter((filePath) => filePath.includes("Day"));
     const trimmedDayFileList = dayFileList.map((filePath) => this.getFilePathWithoutExtension(filePath));
     const deduplicatedDayFiles = [...new Set(trimmedDayFileList)];
 
-    return deduplicatedDayFiles.flatMap((file) => ({
-      name: this.generateTitleFromDayNumber(file?.match(/\d+/g)?.pop()),
-      value: file,
-    }));
+    return deduplicatedDayFiles.flatMap((file) => {
+      const dayNumber = parseInt(file?.match(/\d+/g)?.pop() as string);
+
+      let dayItem = null;
+
+      switch (returnType) {
+        case DaysReturnTypes.OPTIONS:
+          dayItem = { name: this.generateTitleFromDayNumber(dayNumber), value: file } as DayOption;
+          break;
+        case DaysReturnTypes.INDEX:
+          dayItem = { index: dayNumber ?? 0, path: file } as DayIndex;
+          break;
+      }
+
+      return dayItem;
+    }) as DayOption[] | DayIndex[];
   }
 }
 
