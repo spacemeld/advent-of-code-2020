@@ -76,5 +76,9 @@
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
+  },
+  "volta": {
+    "node": "14.15.3",
+    "yarn": "1.22.10"
   }
 }
