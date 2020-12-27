@@ -1,7 +1,6 @@
-import { DSAKeyPairKeyObjectOptions } from "crypto";
 import { readdirSync, statSync } from "fs";
 import path from "path";
-import { DaysReturnTypes, DayOption, DayIndex } from "./definitions";
+import { DaysReturnTypes, DayOption, DayIndex } from "./../definitions";
 
 export class CollectDays {
   rootPath: string;
@@ -54,7 +53,7 @@ export class CollectDays {
 
   listClassesAsDays(returnType: DaysReturnTypes): DayOption[] | DayIndex[] {
     const fileList = this.generateFileList().map((filePath) => filePath.replace(this.rootPath, ""));
-    const dayFileList = fileList.filter((filePath) => filePath.includes("Day"));
+    const dayFileList = fileList.filter((filePath) => RegExp(/Day\d+/g).test(filePath));
     const trimmedDayFileList = dayFileList.map((filePath) => this.getFilePathWithoutExtension(filePath));
     const deduplicatedDayFiles = [...new Set(trimmedDayFileList)];
 
